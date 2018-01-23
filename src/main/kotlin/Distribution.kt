@@ -19,3 +19,18 @@ class Bernoulli(val p: Double) : Distribution<Boolean> {
 
     override val support: Set<Boolean> = setOf(true, false)
 }
+
+fun <T> ProbabilisticContext<T>.flip(
+    p: Double,
+    continuation: ProbabilisticContext<T>.(Boolean) -> ProbabilisticComputation<T>
+): ProbabilisticComputation<T> {
+    val distribution = Bernoulli(p)
+    return sample(distribution, continuation)
+}
+
+class Multinomial<T>(val probabilities: Map<T, Double>) : Distribution<T> {
+    override fun score(value: T): Double = probabilities[value] ?: 0.0
+
+    override val support: Iterable<T>
+        get() = probabilities.keys
+}
