@@ -3,12 +3,17 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.20"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.41"
     }
 }
 
+plugins {
+    id 'com.gradle.build-scan' version '1.13.2'
+}
+
 group 'com.github.h0tk3y.kotlin.probabilistik'
-version '1.0-SNAPSHOT'
+version '0.1'
 
 apply plugin: 'kotlin'
 
@@ -28,5 +33,60 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
 kotlin {
     experimental {
         coroutines "enable"
+    }
+}
+
+buildScan {
+    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+    termsOfServiceAgree = 'yes'
+}
+
+// Publication
+
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+publishing {
+    publications {
+        publishToBintray(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+        }
+    }
+}
+
+
+bintray {
+    user = findProperty('bintray_user')
+    key = findProperty('bintray_api_key')
+
+    publications = ['publishToBintray']
+    publish = true
+    pkg {
+        repo = 'maven'
+        name = 'probabilistik'
+        desc = 'Proof-of-concept implementation of a probabilistic programming framework for Kotlin, using the Kotlin coroutines'
+        websiteUrl = 'https://github.com/h0tk3y/probabilistik'
+        issueTrackerUrl = 'https://github.com/h0tk3y/probabilistik/issues'
+        vcsUrl = 'https://github.com/h0tk3y/probabilistik.git'
+        licenses = ['Apache-2.0']
+        labels = ['kotlin', 'coroutines', 'probabilistic-programming', 'dsl']
+        publicDownloadNumbers = true
+
+        version {
+            name = project.version
+            mavenCentralSync {
+                sync = false
+            }
+        }
     }
 }
