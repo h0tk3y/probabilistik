@@ -63,5 +63,4 @@ class ParticleFilterTest {
         Assert.assertTrue(t2Variance in v2 vicinity 0.5)
     }
 
-    infix fun Double.vicinity(accuracy: Double) = (this - accuracy)..(this + accuracy)
 }
