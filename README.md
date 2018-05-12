@@ -1,6 +1,8 @@
 probabilistik
 ===
 
+[![Build Status](https://travis-ci.com/h0tk3y/probabilistik.svg?branch=master)](https://travis-ci.com/h0tk3y/probabilistik) [ ![Download](https://api.bintray.com/packages/hotkeytlt/maven/probabilistik/images/download.svg) ](https://bintray.com/hotkeytlt/maven/probabilistik/_latestVersion)
+
 This is a proof-of-concept implementation of a probabilistic programming framework
 for Kotlin, using the Kotlin coroutines. It is mostly inspired by 
 [The Design and Implementation of Probabilistic Programming Languages](http://dippl.org). 
@@ -14,6 +16,18 @@ inline functions that you pass a suspending lambda (like `map { ... }` from the 
 If you do, you may end up with a computation rolled back with the state still modified by another branch of the computation.
 This library is purely experimental and is by no means production-ready. The author is not 
 to be held responsible if the code breaks, or the code breaks your computer, or the code kills your neighbor's dog.
+
+### Adding to Gradle Project
+
+``` groovy
+repositories {
+    maven { url  "https://dl.bintray.com/hotkeytlt/maven" }
+}
+
+dependencies {
+    compile 'com.github.h0tk3y.kotlin.probabilistik:probabilistik:0.1'
+}
+```
 
 ### Introduction
 
