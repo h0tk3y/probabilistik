@@ -1,7 +1,7 @@
 probabilistik
 ===
 
-[![Build Status](https://travis-ci.com/h0tk3y/probabilistik.svg?branch=master)](https://travis-ci.com/h0tk3y/probabilistik) [ ![Download](https://api.bintray.com/packages/hotkeytlt/maven/probabilistik/images/download.svg) ](https://bintray.com/hotkeytlt/maven/probabilistik/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/hotkeytlt/maven/probabilistik/images/download.svg) ](https://bintray.com/hotkeytlt/maven/probabilistik/_latestVersion) [![Build Status](https://travis-ci.com/h0tk3y/probabilistik.svg?branch=master)](https://travis-ci.com/h0tk3y/probabilistik)
 
 This is a proof-of-concept implementation of a probabilistic programming framework
 for Kotlin, using the Kotlin coroutines. It is mostly inspired by 
@@ -21,7 +21,7 @@ to be held responsible if the code breaks, or the code breaks your computer, or 
 
 ``` groovy
 repositories {
-    maven { url  "https://dl.bintray.com/hotkeytlt/maven" }
+    maven { url 'https://dl.bintray.com/hotkeytlt/maven' }
 }
 
 dependencies {
