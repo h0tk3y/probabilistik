@@ -40,7 +40,7 @@ observations of all possible runs of normal computations that work with distribu
 Example:
 
 ```
-val program = probabilistiic {
+val program = probabilistic {
     val coin1 = flip()
     val coin2 = flip()
     println("$coin1 $coin2")
